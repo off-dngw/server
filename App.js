@@ -104,7 +104,8 @@ app.post('/nickname', controller.changeNick);
 app.post('/password', controller.changePW);
 
 
-const port = 80;
+const port1 = 80;
+const port2 = 443;
 
 let Server;
 if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
@@ -113,8 +114,8 @@ if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
   const credentials = { key: privateKey, cert: certificate };
 
   Server = https.createServer(credentials, app);
-  Server.listen(port, () => console.log(`Https 서버가 ${port}번에서 작동중입니다.`));
+  Server.listen(port2, () => console.log(`Https 서버가 ${port2}번에서 작동중입니다.`));
 } else {
-  Server = app.listen(port, () => console.log(`Http 서버가 ${port}번에서 작동중입니다.`));
+  Server = app.listen(port1, () => console.log(`Http 서버가 ${port1}번에서 작동중입니다.`));
 }
 module.exports = Server;
